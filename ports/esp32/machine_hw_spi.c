@@ -88,7 +88,7 @@ STATIC void machine_hw_spi_deinit_internal(machine_hw_spi_obj_t *self) {
         if (pins[i] != -1) {
             gpio_pad_select_gpio(pins[i]);
             gpio_matrix_out(pins[i], SIG_GPIO_OUT_IDX, false, false);
-            gpio_set_direction(pins[i], GPIO_MODE_INPUT);
+            gpio_set_direction(pins[i], GPIO_MODE_INPUT_OUTPUT);
         }
     }
 }
@@ -172,7 +172,7 @@ STATIC void machine_hw_spi_init_internal(
     }
 
     spi_bus_config_t buscfg = {
-        .miso_io_num = self->miso,
+        .miso_io_num= -1,
         .mosi_io_num = self->mosi,
         .sclk_io_num = self->sck,
         .quadwp_io_num = -1,
