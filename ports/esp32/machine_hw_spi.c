@@ -182,9 +182,9 @@ STATIC void machine_hw_spi_init_internal(
     spi_device_interface_config_t devcfg = {
         .clock_speed_hz = self->baudrate,
         .mode = self->phase | (self->polarity << 1),
-        .spics_io_num = -1, // No CS pin
+        //.spics_io_num = -1, // No CS pin
         .queue_size = 1,
-        .flags = (self->firstbit == MICROPY_PY_MACHINE_SPI_LSB ? SPI_DEVICE_TXBIT_LSBFIRST | SPI_DEVICE_RXBIT_LSBFIRST : 0) | SPI_DEVICE_3WIRE | SPI_DEVICE_HALFDUPLEX,
+        .flags = (self->firstbit == MICROPY_PY_MACHINE_SPI_LSB ? SPI_DEVICE_TXBIT_LSBFIRST | SPI_DEVICE_RXBIT_LSBFIRST : 0) | SPI_DEVICE_3WIRE,
         .pre_cb = NULL
     };
 
